@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="date">{{object.created_date}}</div>
+<h2>{{object.title}}</h2><br>
+	<p class="one" id="btext">{{object.body}}</p><br>
+ <hr>
+     <h5><i>Published By <i>{{object.author}}</i></h5><br>
+     <button class="btn btn-success btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off" onclick="onClick()">Like</button><br>
+     <p id="like">{{object.likes}} likes</p>
+     <input id="likes_id" type="hidden" name="name" value="{{object.id}}">
+     <a href="{% url 'blog:post-update' object.id %}"><button class="btn btn-outline-warning"data-toggle="button" aria-pressed="false" autocomplete="off">Update</button></a>
+     <a href="{% url 'blog:post-delete' object.id %}"><button class="btn btn-outline-danger"data-toggle="button" aria-pressed="false" autocomplete="off">Delete</button></a><br>
+     <hr>
+     <a class="btn btn-primary btn-sm" data-toggle="button" aria-pressed="false" autocomplete="off" href="{% url 'blog:post-comment' object.id %}" role="button">Comment</a><br>
+     {% for i in post.comments.all %}
+     {{i.text}}<br>
+     {{i.timestamp}}<br>
+     {% empty %}
+     No comments
+     {% endfor %}
+ </hr>
+{% endblock %}
+
+      

@@ -1,28 +1,17 @@
-{% extends 'base.html'%}
+{%extends 'base.html' %}
 {% block content %}
 
+<div class="row">
 {% for i in object_list %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>blog</title>
-</head>
-<body>
-<hr>
 <div class="col-md-6">
-	<div class="post">
-
-	
-	<a href="{% url 'blog:post-detail' i.id %}"><h2>{{i.title}}
-	</h2></a>
-	<img class="img-fluid" alt="Responsive image" src="{{i.img.url}}" height = 300><br>
-	Comments: {{ i.comments.count }}
-
-
+<a id="h3id" href="{% url 'blog:post-detail' i.id %}">{{i.title}}</a><br><br>
+{% if i.img %}
+<img src="{{i.img.url}}"  height="300" width="300">
+{% endif %}
+<br>
+Comments: {{ i.comments.count }}
+<br><br>
 </div>
-</hr>
-</body>
-</div>
-</html>
 {% endfor %}
+</div>
 {% endblock %}
